@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+    <div class="cover center">
+        <img src="https://i.postimg.cc/7hXmGcf7/Whadup-5.png" alt="Home Cover">
+    </div>
+    {% if app.user %}
+        {# TO DO : AJOUTER UN LIEN POUR EDITER PROFIL <a class="publishLink" href="{{ path('profile_edit', {'id': app.user}) }}">Editer le profile</a> #}
+        <h2 class="username">{{ app.user.username }}</h2>
+        <div class="center">
+            {% if app.user.photo %}
+                <img class="profilPicture" src="{{ app.user.photo }}">
+            {% endif %}
+        </div>
+
+        <a class="publishLink" href="{{ path('user_edit', {'id': app.user.id}) }}">Modifier mon profil</a>
+        <div class="profileLinks">
+            {% if app.user.linkedin %}
+                <a class="link" target="_blank" href="{{ app.user.linkedin }}">Linkedin</a> <br>
+            {% endif %}
+            {% if app.user.github %}
+                <a target="_blank" href="{{ app.user.github }}">Github</a> <br>
+            {% endif %}
+            {% if app.user.portfolio %}
+                <a target="_blank" href="{{ app.user.portfolio }}">Portfolio</a> <br>
+            {% endif %}
+        </div>
+        <div class="profileCtn">
+            {% if app.user.employed == 1 %}
+                <div class="center">
+                    <p class="employed">En poste : Oui</p>
+                </div>
+            {% elseif app.user.employed == 0 %}
+                <div class="center">
+                    <p>En poste : Non</p>
+                </div>
+
+            {% endif %}
+
+            <div class="center">
+                {% if app.user.job %}
+                    <p>Job : {{ app.user.job }}</p>
+                {% endif %}
+            </div>
+
+            <div class="center">
+                {% if app.user.bio %}
+                    <p>Bio : {{ app.user.bio }}</p>
+                {% endif %}
+            </div>
+
+            <div class="center">
+                {% if app.user.email %}
+                    <p>Email : <a href="mailto: {{ app.user.email }}">{{ app.user.email }}</a></p>
+
+                {% endif %}
+            </div>
+        </div>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('article_index') }}">Index des Articles</a>
+            <a href="{{ path('bug_index') }}">Index des Bugs</a>
+            <a href="{{ path('user_index') }}">Index des Utilisateurs</a>
+        {% endif %}
+    {% else %}
+        <p class="text-center">Veuillez vous connecter pour accéder à cette page
+            <a href="{{ path('app_login') }}">Connexion</a>
+        </p>
+    {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

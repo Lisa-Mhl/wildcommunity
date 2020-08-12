@@ -1,0 +1,140 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+    {% if app.user %}
+        <a class="publishLink homebutton" href="{{ path('article_new') }}">Publier un article</a>
+    {% endif %}
+
+    <div class="welcomeTxt" id="welcome">
+        <p>Bienvenue sur Wild Community
+        <p>
+        <p class="welcomeBody"> Vous êtes <a href="#dev">développeur</a> à la recherche d'une offre d'emploi ou
+            simplement de partenaires
+            avec qui partager votre passion pour le code, vos bugs et vos solutions ? Créez votre compte et entrez dans
+            la communauté ! <br> <br> Vous êtes <a href="#recruteur">recruteur</a> à la recherche du développeur idéal
+            ?
+            Inscrivez-vous comme
+            recruteur, publiez vos offres d'emplois et accédez aux profils de nos développeurs. <br>
+
+            {% if app.user %}
+            <a class="buttons center" href="#Whadup"> Derniers articles postés </a>
+            {% else %}
+            <span class="buttons">
+            <a class="center buttonCo" href="{{ path('app_register') }}">Créer un compte</a>
+            <a class="center buttonCo" href="{{ path('app_login') }}">Connexion</a>
+        </span>
+            <a class="center" href="#Whadup"> Derniers articles postés </a>
+        </p>
+        {% endif %}
+    </div>
+
+    <h3 id="dev">Vous êtes développeur</h3>
+    <div class="devSection">
+        <div class="card devCard">
+            <h3 class="card-title devCardTitle">
+                Postez des articles, news, veilles
+            </h3>
+            <p class="card-body devCardBody">
+                Une fois inscrit comme Développeur, vous pouvez poster des articles, des news, des sujets de veilles
+                pour enrichir le site de vos contenus qui seront publiés <a href="#Whadup"> ici</a> !
+            </p>
+            <img class="card-image devImg" src="https://i.postimg.cc/DZC1hj7Z/Untitled-design-6.png" alt="logo">
+        </div>
+        <div class="card devCard">
+            <h3 class="card-title devCardTitle">
+                Demandez de l'aide ou apportez vos solutions
+            </h3>
+            <p class="card-body devCardBody">
+                La Débug Zone vous permet de publier des bugs en cas de problème et de proposer des solutions aux autres
+                membres de la communauté. <br>
+                {% if app.user %}
+                    <a class="center" href="{{ path('debug') }}">Debug Zone</a>
+                {% endif %}
+            </p>
+            <img class="card-image devImg" src="https://i.postimg.cc/L5YNhY4j/Untitled-design-7.png" alt="logo">
+        </div>
+        <div class="card devCard">
+            <h3 class="card-title devCardTitle">
+                Postulez à des offres d'emplois
+            </h3>
+            <p class="card-body devCardBody">
+                Retrouvez toutes les offres d'emplois postées par les recruteurs de la communauté dans la Job
+                Zone et postulez au job de vos rêves. <br>
+                {% if app.user %}
+                    <a class="center" href="{{ path('job') }}">Job Zone</a>
+                {% endif %}
+            </p>
+            <img class="card-image devImg" src="https://i.postimg.cc/x1Yhp5T7/Untitled-design-9.png" alt="logo">
+        </div>
+    </div>
+
+    <h3 id="recruteur">Vous êtes recruteur</h3>
+    <div class="empSection">
+        <div class="card devCard">
+            <h3 class="card-title devCardTitle">
+                Publiez vos offres d'emplois
+            </h3>
+            <p class="card-body devCardBody">
+                Une fois inscrit comme Recruteur, vous pouvez publier des offres d'emplois en vous rendant dans la Job
+                Zone pour que nos développeurs y accèdent. <br>
+                {% if app.user %}
+                    <a class="center" href="{{ path('job') }}">Job Zone</a>
+                {% endif %}
+            </p>
+            <img class="card-image devImg" src="https://i.postimg.cc/x1Yhp5T7/Untitled-design-9.png" alt="logo">
+        </div>
+        <div class="card devCard">
+            <h3 class="card-title devCardTitle">
+                Trouvez le développeur de vos rêves
+            </h3>
+            <p class="card-body devCardBody">
+                Accédez aux profils de nos développeurs pour entrer directement en contact avec eux et regardez
+                leur travail dans le Débug Zone. <br>
+                {% if app.user %}
+                    <a class="center" href="{{ path('debug') }}">Debug Zone</a>
+                {% endif %}
+            </p>
+            <img class="card-image devImg" src="https://i.postimg.cc/R0k9pf3D/Untitled-design-10.png" alt="logo">
+        </div>
+        <div class="card devCard">
+            <h3 class="card-title devCardTitle">
+                Postez des articles, news, veilles
+            </h3>
+            <p class="card-body devCardBody">
+                Ecrivez des articles à propos de votre entreprise, publiez des veilles ou tout ce que vous souhaitez
+                partager avec la communauté <a href="#Whadup"> ici</a> !
+            </p>
+            <img class="card-image devImg" src="https://i.postimg.cc/DZC1hj7Z/Untitled-design-6.png" alt="logo">
+        </div>
+    </div>
+
+    <div id="Whadup" class="cover center">
+        <img src="https://i.postimg.cc/B6CQ9Q13/Whadup-2.png" alt="Whadup Cover">
+    </div>
+    <div class="whadupCtn">
+        <div class="row">
+            {% for article in articles %}
+                <div class="col-lg-4 col-md-6 col-sm-7">
+                    <a class="cardHoverLink" href="{{ path('article_show', {'id':article.id}) }}">
+                        <article class="card articleCard">
+                            <h3 class="card-title text-center bold">{{ article.title }}</h3>
+                            {% if article.poster %}
+                                <img class="card-img articleImg" src="{{ article.poster }}" alt="article poster">
+                            {% endif %}
+                            <p class="card-body"><span class="bold">Article publié par : {{ article.author }}</span>
+                                <br><br>
+                                {{ article.description }}</p>
+                            <a href="{{ path('article_show', {'id':article.id}) }}" class="card-link text-center">Lire
+                                l'article
+                            </a>
+                        </article>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+

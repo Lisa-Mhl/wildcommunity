@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Debug Zone{% endblock %}
+
+{% block body %}
+    <div class="cover center" id="debugzone">
+        <img src="https://i.postimg.cc/d0zXwzyV/Whadup-3.png" alt="Debug Zone Cover">
+    </div>
+
+    {% if app.user %}
+        {% if is_granted('ROLE_DEV') %}
+            <a class="publishLink" href="{{ path('bug_new') }}">Poster un bug</a><br>
+        {% endif %}
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('bug_index') }}">Index des bugs</a>
+        {% endif %}
+        <div class="categoriesCtn">
+            <h4 class="text-white">Catégories :</h4>
+            {% for category in categories %}
+                <a href="#{{ category.id }}" class="categories">{{ category.name }} <br></a>
+            {% endfor %}
+        </div>
+
+        {% for category in categories %}
+            <div class="bugCtn">
+            <h4 id="{{ category.id }}" class="text-center categoryName">{{ category.name }}</h4>
+
+            <div class="row">
+                {% for bug in category.bugs %}
+                    <div class="col-lg-4 col-md-6 col-sm-7">
+                        <a class="cardHoverLink" href="{{ path('debugdetails', {'id':bug.id}) }}">
+                            <div class="card articleCard" id="debugCard">
+                                <h3 class="card-title text-center bold">{{ bug.title }}</h3>
+                                {% if bug.resolved == 1 %}
+                                    <img class="card-img solved"
+                                         src="https://thumbs.dreamstime.com/b/tampon-en-caoutchouc-r%C3%A9solu-par-probl%C3%A8me-87548209.jpg"
+                                         alt="résolu">
+                                {% elseif bug.imgA %}
+                                    <img class="card-img imgA" src="{{ bug.imgA }}">
+                                {% endif %}
+                                <p class="card-body"><span class="bold"> Catégorie :</span> {{ bug.category }}<br><br>
+                                    <span class="bold">Description :</span> {{ bug.description }} <br>
+                                    <span class="bold">Stack :</span> {{ bug.stack }} <br><br>
+                                    <span class="bold">Auteur :</span> {{ bug.author }}
+                                </p>
+                                <div class="center">
+                                    <a href="{{ path('debugdetails', {'id':bug.id}) }}" class="card-link">Voir le
+                                        bug</a>
+                                    {% if app.user is same as (bug.author) %}
+                                        {% if bug.resolved == 0 %}
+                                            <a href="{{ path('bug_edit', {'id': bug.id}) }}" class="card-link">Passer en
+                                                résolu</a>
+                                        {% endif %}
+                                    {% endif %}
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+            <a class="center" href="#debugzone"><img src="https://i.postimg.cc/hGxQ9zxG/Untitled-design-13.png"
+                                                     alt="Up arrow" class="up">
+            </a>
+        {% endfor %}
+
+    {% else %}
+        <p class="text-center">Veuillez vous connecter pour accéder à cette page
+            <a href="{{ path('app_login') }}">Connexion</a>
+        </p>
+    {% endif %}
+
+{% endblock %}

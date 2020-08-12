@@ -1,0 +1,19 @@
+{{ form_start(form) }}
+                       {{ form_label(form.photo, 'Lien vers votre photo de profil (facultatif)') }}
+                       {{ form_widget(form.photo) }}
+                       {{ form_label(form.email, 'Email') }}
+                       {{ form_widget(form.email) }}
+                       {{ form_label(form.job, 'Job') }}
+                       {{ form_widget(form.job) }}
+                       {{ form_widget(form.employed, {'label' : 'Cochez la case si vous  etes en poste'}) }}
+                       {{ form_widget(form.bio) }}
+                       {{ form_label(form.linkedin, 'Linkedin (facultatif)') }}
+                       {{ form_widget(form.linkedin) }}
+                       {{ form_label(form.github, 'Github (facultatif)') }}
+                       {{ form_widget(form.github) }}
+                       {{ form_label(form.portfolio, 'Site Web (facultatif)') }}
+                       {{ form_widget(form.portfolio) }}
+<div class="center">
+    <button class="sendlink">{{ button_label|default('Save') }}</button>
+</div>
+{{ form_end(form) }}

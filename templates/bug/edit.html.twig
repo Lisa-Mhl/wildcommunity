@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Bug{% endblock %}
+
+{% block body %}
+    <h1 class="mainTitle">Passer en résolu</h1>
+    {% if app.user is same as (bug.author) %}
+        <div class="solvedCtn">
+        {{ form_start(form) }}
+        <div class="hidden">
+            {{ form_label(form.author, 'Auteur') }}
+            {{ form_widget(form.author) }}
+            {{ form_label(form.title, 'Titre') }}
+            {{ form_widget(form.title) }}
+            {{ form_label(form.title, 'Description courte') }}
+            {{ form_widget(form.description) }}
+            {{ form_label(form.content, 'Description détaillée') }}
+            {{ form_widget(form.content) }}
+            {{ form_label(form.imgA, 'Image 1') }}
+            {{ form_widget(form.imgA) }}
+            {{ form_label(form.imgB, 'Image 2') }}
+            {{ form_widget(form.imgB) }}
+            {{ form_label(form.imgC, 'Image 3') }}
+            {{ form_widget(form.imgC) }}
+            {{ form_label(form.imgC, 'Stack') }}
+            {{ form_widget(form.stack) }}
+            {{ form_widget(form.category) }}
+        </div>
+        <div class="center">
+            {{ form_widget(form.resolved, {'label' : 'Résolu'}) }}
+        </div>
+        <div class="center">
+            <button class="sendlink">{{ button_label|default('Enregistrer') }}</button>
+        </div>
+        {{ form_end(form) }}
+        <div class="center">
+            <a href="{{ path('debug') }}">Retour aux bugs</a>
+        </div>
+    {% else %}
+        <p>Seuls les auteurs d'un bug peuvent le passer en résolu</p>
+    {% endif %}
+    </div>
+{% endblock %}

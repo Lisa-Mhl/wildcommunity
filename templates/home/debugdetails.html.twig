@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Débug Zone{% endblock %}
+
+{% block body %}
+    <div class="cover center" id="debugzone">
+        <img src="https://i.postimg.cc/8ckF9ZNP/Whadup.png" alt="Debug Zone Cover">
+    </div>
+    {% if app.user %}
+        <h4 class="bugTitle text-center"> "{{ bug.title }}" <br><span
+                    class="subtitle">publié par <br>{{ bug.author }}</span></h4>
+        <div class="center">
+        <div class="card debugdetCard">
+        <p class="card-body"> {{ bug.content }}</p>
+        {% if bug.imgA %}
+            <img class="card-img debugdetImg" src="{{ bug.imgA }}" alt="Image 1">
+        {% endif %}
+        {% if bug.imgB %}
+            <img class="card-img debugdetImg" src="{{ bug.imgB }}" alt="Image 2">
+        {% endif %}
+        {% if bug.imgC %}
+            <img class="card-img debugdetImg" src="{{ bug.imgC }}" alt="Image 3">
+        {% endif %}
+
+        <h3 class="soluceTitle">SOLUCES</h3>
+        {% for comment in bug.comments %}
+            <div class="card">
+                <span class="name">
+                {% if comment.author.photo %}
+                    <img class="profilePix" src="{{ comment.author.photo }}" alt="Photo de Profil">
+                {% endif %}
+                <p class="card-body">{{ comment.author }}<br>
+                    {{ comment.comment }}</p></span>
+            </div>
+        {% endfor %}
+
+        {% if bug.resolved == 0 %}
+            {% if is_granted('ROLE_DEV') %}
+                <div class="soluceForm">
+                    {{ form_start(form) }}
+                    {{ form_label(form.comment, 'Poster une solution') }}
+                    {{ form_widget(form.comment, {'attr':{'class':'formSoluce'}}) }}
+                    <div class="center">
+                        <button class="sendlink">{{ button_label|default('Envoyer') }}</button>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            {% endif %}
+        {% endif %}
+
+
+    {% else %}
+        <p class="text-center">Veuillez vous connecter pour accéder à cette page
+            <a href="{{ path('app_login') }}">Connexion</a>
+        </p>
+    {% endif %}
+
+    <div class="center">
+        <a href="{{ path('debug') }}">Retour aux bugs</a>
+    </div>
+
+    </div>
+    </div>
+
+{% endblock %}

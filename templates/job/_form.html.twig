@@ -1,0 +1,27 @@
+{{ form_start(form) }}
+<fieldset class="formFs">
+    {{ form_label(form.title, 'Titre de l\'offre') }}
+    {{ form_widget(form.title) }}
+    {{ form_label(form.company, 'Nom de l\'entreprise') }}
+    {{ form_widget(form.company) }}
+    {{ form_label(form.description, 'Détails') }}
+    {{ form_widget(form.description) }}
+    {{ form_label(form.contract, 'Type de contrat') }}
+    {{ form_widget(form.contract) }}
+    {{ form_label(form.salary, 'Salaire /mois') }}
+    {{ form_widget(form.salary) }}
+    {{ form_label(form.experience, 'Nbr d\'années d\'expériences requis') }}
+    {{ form_widget(form.experience) }}
+    {{ form_label(form.skills, 'Compétences requises') }}
+    {{ form_widget(form.skills) }}
+    {{ form_label(form.link, 'Lien vers l\'offre') }}
+    {{ form_widget(form.link) }}
+    <div class="hidden">
+        {{ form_label(form.author, 'Auteur') }}
+        {{ form_widget(form.author) }}
+    </div>
+    <div class="center">
+        <button class="sendlink">{{ button_label|default('Publier') }}</button>
+    </div>
+</fieldset>
+{{ form_end(form) }}

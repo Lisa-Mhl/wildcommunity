@@ -1,0 +1,832 @@
+html {
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+    color: cornflowerblue;
+}
+
+body {
+    background-color: whitesmoke;
+}
+
+.cardHoverLink {
+    color: black;
+}
+
+.cardHoverLink:hover {
+    color: black;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #5eb5e0;
+}
+
+.top05 {
+    margin-top: 0.5em;
+}
+
+.bold {
+    font-weight: bolder;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.hidden {
+    display: none;
+}
+
+h1 {
+    font-family: 'Cinzel', serif;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+h3 {
+    font-family: 'Cinzel', serif;
+}
+
+/************************************************* MOBILE VERSION *****************************************************/
+@media only screen and (max-width: 600px) {
+    /* BURGER MENU */
+    #menuToggle {
+        display: block;
+        position: fixed;
+        top: 20px;
+        left: 2%;
+        z-index: 1;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    #menuToggle a {
+        text-decoration: none;
+    }
+
+    #menuToggle input {
+        display: block;
+        width: 40px;
+        height: 100px;
+        position: absolute;
+        top: -7px;
+        left: -5px;
+        cursor: pointer;
+        opacity: 0; /* hide this */
+        z-index: 2; /* and place it over the hamburger */
+        -webkit-touch-callout: none;
+    }
+
+    /* Burger Menu */
+    #menuToggle span {
+        display: block;
+        width: 33px;
+        height: 4px;
+        margin-bottom: 5px;
+        position: relative;
+        background-color: #5eb5e0;
+        border-radius: 3px;
+        z-index: 1;
+        transform-origin: 4px 0px;
+        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+        background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+        opacity 0.55s ease;
+    }
+
+    #menuToggle span:first-child {
+        transform-origin: 0% 0%;
+    }
+
+    #menuToggle span:nth-last-child(2) {
+        transform-origin: 0% 100%;
+    }
+
+    #menuToggle input:checked ~ span {
+        opacity: 1;
+        transform: rotate(45deg) translate(-2px, -1px);
+        background: cornflowerblue;
+    }
+
+    #menuToggle input:checked ~ span:nth-last-child(3) {
+        opacity: 0;
+        transform: rotate(0deg) scale(0.2, 0.2);
+    }
+
+    #menuToggle input:checked ~ span:nth-last-child(2) {
+        transform: rotate(-45deg) translate(0, -1px);
+    }
+
+    #menu {
+        position: absolute;
+        width: 300px;
+        margin: -100px 0 0 -50px;
+        padding: 50px;
+        padding-top: 125px;
+
+        list-style-type: none;
+        -webkit-font-smoothing: antialiased;
+        /* to stop flickering of text in safari */
+
+        transform-origin: 0% 0%;
+        transform: translate(-100%, 0);
+
+        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+    }
+
+    #menu li {
+        background-color: whitesmoke;
+        padding: 10px 0;
+        font-size: 22px;
+        width: 80%;
+    }
+
+    #menu li:hover {
+        color: #5F9EA0;
+    }
+
+    #menuToggle input:checked ~ ul {
+        transform: none;
+    }
+
+    .desktopNav {
+        display: none;
+    }
+
+    /* HOME */
+    .mainTitle {
+        text-align: center;
+        padding-top: 5rem;
+        font-size: 2rem;
+    }
+
+    .articleCtn {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-title {
+        background-color: whitesmoke;
+        padding: 0.5rem;
+        margin-bottom: 0;
+    }
+
+    .cover {
+        height: 10em;
+    }
+
+    .publishLink {
+        text-align: center;
+        font-weight: bold;
+        color: cornflowerblue;
+        border-radius: 15px;
+        width: 50%;
+        position: absolute;
+        top: 100px;
+        left: 25%;
+        border: none;
+        background: whitesmoke;
+    }
+
+    .sendlink {
+        margin-top: 1em;
+        margin-bottom: 1em;
+        font-weight: bold;
+        color: cornflowerblue;
+        border-radius: 15px;
+        width: 50%;
+        border-style: solid;
+        border-width: thin;
+        border-color: cornflowerblue;
+
+    }
+
+    .articleCard {
+        border: none;
+        margin-bottom: 2rem;
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+    }
+
+    .publishBy {
+        font-size: 1.5em;
+    }
+
+    .articleImg {
+        margin-bottom: 1rem;
+    }
+
+    .articleLink {
+        margin-left: 1em;
+        margin-bottom: 1em;
+    }
+
+    /* DEBUG */
+    .bugCtn {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .categoriesCtn { /* TO DO  AJOUTER UN MENU DEROULANT  */
+        display: none;
+    }
+
+    .categoryName {
+        background-color: white;
+        color: cornflowerblue;
+    }
+
+    .up {
+        height: 50px;
+        margin-bottom: 1em;
+    }
+
+    /* DEBUG DETAILS */
+    .soluceTitle {
+        text-align: center;
+        padding-top: 1rem;
+    }
+
+    .subtitle {
+        font-size: 0.8em;
+    }
+
+    .debugdetImg {
+        margin-top: 1rem;
+        height: 300px;
+    }
+
+    .bugTitle {
+        background-color: #02334b;
+        color: whitesmoke;
+        font-weight: bold;
+    }
+
+    .name {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .profilePix {
+        border-radius: 100%;
+        height: 45px;
+        width: 45px;
+        margin-left: 1em;
+        margin-top: 1em;
+    }
+
+    /* JOB */
+    .jobCtn {
+        width: 70%;
+        margin: 2rem auto 3rem;
+        background-color: white;
+    }
+
+    .jobBody {
+        padding-left: 1em;
+    }
+
+    .jobSubTitle {
+        font-size: large;
+    }
+
+    .mobileTitle {
+        background-color: #02334b;
+        color: whitesmoke;
+    }
+
+    /* REGISTER */
+    .registerFs {
+        padding-top: 2rem;
+        width: 70%;
+        margin: auto;
+    }
+
+    /* LOGIN */
+    .loginBtn {
+        margin-top: 1rem;
+    }
+
+    /* PROFILE */
+    .username {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .profilPicture {
+        border-radius: 100%;
+        height: 150px;
+        width: 150px;
+    }
+
+    footer {
+        display: none;
+    }
+
+    .profileLinks {
+        position: absolute;
+        top: 32%;
+        left: 2%;
+    }
+
+    .employed {
+        margin-top: 2rem;
+    }
+}
+
+/************************************************* TAB VERSION *****************************************************/
+@media only screen and (min-width: 600px) {
+    .mobileNav {
+        display: none;
+    }
+
+    .desktopNav {
+        display: flex;
+        margin: auto;
+        justify-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1rem 2rem 2.5rem;
+        height: 3rem;
+        background-color: whitesmoke;
+        box-shadow: 0px 5px 15px grey;
+    }
+
+    .desktopNav a {
+        color: #222222;
+        font-weight: bolder;
+    }
+
+    .mainTitle {
+        text-align: center;
+        margin-top: 2rem;
+    }
+
+    .articleCard {
+        border: none;
+        margin-top: 1em;
+    }
+
+    .publishLink {
+        display: flex;
+        justify-content: center;
+        margin: auto auto 1rem;
+        width: 35%;
+        border-style: solid;
+        border-width: thin;
+        border-color: #5eb5e0;
+        background-color: whitesmoke;
+        padding: 5px;
+        color: #222222;
+    }
+
+    .debugdetImg {
+        margin-top: 1em;
+    }
+
+    .name {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .profilePix {
+        border-radius: 100%;
+        height: 45px;
+        width: 45px;
+        margin-left: 1em;
+        margin-top: 1em;
+    }
+
+    .card-link {
+        margin-bottom: 1em;
+    }
+
+    .card-title {
+        background-color: black;;
+        padding: 2rem;
+        margin-bottom: 0;
+        color: whitesmoke;
+    }
+
+    .articleLink {
+        margin-left: 1.5em;
+        margin-bottom: 1em;
+    }
+
+    .soluceTitle {
+        margin-top: 1em;
+    }
+
+    .soluceForm {
+        margin-top: 1rem;
+    }
+
+}
+
+
+/************************************************* DESKTOP VERSION *****************************************************/
+@media only screen and (min-width: 1200px) {
+
+    /* HOME */
+    .logo {
+        width: 150px;
+    }
+
+    .desktopNav a:hover {
+        color: cornflowerblue;
+    }
+
+
+    .welcomeTxt {
+        background-image: url("https://i.postimg.cc/wMbG8xGb/Untitled-design-5.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-size: 2.5em;
+        font-weight: bold;
+        font-family: 'Cinzel', serif;
+        height: 900px;
+        text-align: center;
+        padding-top: 10%;
+    }
+
+    .welcomeBody {
+        margin: auto;
+        width: 35%;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.5em;
+        text-align: justify;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: row;
+        margin-top: 2em;
+        justify-content: center;
+        margin-bottom: 2em;
+    }
+
+    .buttonCo {
+        font-weight: bold;
+        color: whitesmoke;
+        border-radius: 15px;
+        background: cornflowerblue;
+        transition: 0.5s;
+        margin-right: 1em;
+        padding: 0.5em;
+        width: 35%;
+    }
+
+    .buttonCo:hover {
+        color: cornflowerblue;
+        transition: 0.5s;
+        border-color: black;
+        background: whitesmoke;
+        font-weight: bold;
+    }
+
+    #dev {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 3em;
+        background-image: url("https://i.postimg.cc/05BgFsKw/6495ed.png");
+        background-size: cover;
+        color: whitesmoke;
+
+    }
+
+    #recruteur {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 3em;
+        background-image: url("https://i.postimg.cc/05BgFsKw/6495ed.png");
+        background-size: cover;
+        color: whitesmoke;
+    }
+
+    .devSection {
+        display: flex;
+        flex-direction: row;
+        height: 700px;
+        justify-content: space-around;
+        margin-bottom: 130px;
+
+
+    }
+
+    .empSection {
+        display: flex;
+        flex-direction: row;
+        height: 700px;
+        justify-content: space-around;
+        margin-bottom: 130px;
+
+    }
+
+    .devCard {
+        width: 23%;
+        height: 77%;
+        margin-top: 7%;
+        border: none
+    }
+
+    .devCardTitle {
+        background-image: radial-gradient(circle at top left, white, antiquewhite);
+        color: black;
+        font-weight: bold;
+        height: 140px;
+        text-align: center;
+    }
+
+    .devCardBody {
+        font-size: 1.2em;
+        text-align: justify;
+    }
+
+    .devImg {
+        height: 200px;
+        width: 215px;
+        margin: auto;
+    }
+
+    .publishLink {
+        font-weight: bold;
+        color: cornflowerblue;
+        border-radius: 15px;
+        width: 12%;
+        position: absolute;
+        top: 200px;
+        left: 44%;
+        border: none;
+        background: whitesmoke;
+        transition: 0.5s;
+    }
+
+    .publishLink:hover {
+        color: whitesmoke;
+        transition: 0.5s;
+        border-color: black;
+        background: cornflowerblue;
+        font-weight: bold;
+    }
+
+    .sendlink {
+        margin-top: 1em;
+        margin-bottom: 1em;
+        font-weight: bold;
+        color: cornflowerblue;
+        border-radius: 15px;
+        width: 12%;
+        border-style: solid;
+        border-width: thin;
+        border-color: cornflowerblue;
+        transition: 0.5s;
+    }
+
+    .sendlink:hover {
+        color: whitesmoke;
+        transition: 0.5s;
+        border-color: cornflowerblue;
+        background: cornflowerblue;
+        font-weight: bold;
+    }
+
+    .articleCard:hover {
+        transition: all 200ms ease-in;
+        transform: scale(1.1);
+    }
+
+    .cover {
+        background-color: black;
+        width: 100%;
+        color: whitesmoke;
+    }
+
+    .homebutton {
+        position: absolute;
+        top: 3000px;
+        left: 44%;
+        z-index: 2;
+    }
+
+    .whadupCtn {
+        background-image: url("https://media.giphy.com/media/Q9aBxHn9fTqKs/giphy.gif");
+        background-size: contain;
+        display: flex;
+        justify-content: center;
+    }
+
+    .articleCard {
+        width: 450px;
+        margin-bottom: 5em;
+        transition: 200ms;
+    }
+
+    .articleDetCtn {
+        display: flex;
+        flex-direction: column;
+        margin-top: 4rem;
+
+    }
+
+    .articleImg {
+        width: fit-content;
+    }
+
+    .articleDetImg {
+        width: 650px;
+        margin: auto;
+    }
+
+    .formFs {
+        padding-top: 2rem;
+        margin: auto;
+        width: 50%;
+    }
+
+    .formContent {
+        height: 500px;
+    }
+
+    .formSoluce {
+        height: 350px;
+    }
+
+    .articleDetCard {
+        margin: 2rem auto auto;
+        width: 55%;
+        border: none;
+        background-color: whitesmoke;
+        text-align: justify;
+    }
+
+
+    .debugdetImg {
+        max-width: 1200px;
+        max-height: 600px;
+        margin: auto;
+    }
+
+    .categoriesCtn {
+        text-align: left;
+        position: absolute;
+        top: 70px;
+        left: 35px;
+    }
+
+    .category {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .up {
+        height: 50px;
+        margin-bottom: 1em;
+    }
+
+    .debugdetCard {
+        width: 80%;
+        border: none;
+        background-color: whitesmoke;
+        font-size: 1.2em;
+        text-align: justify;
+    }
+
+    .solvedCtn {
+        padding-top: 15em;
+        padding-bottom: 16em;
+    }
+
+    .name {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .profilePix {
+        border-radius: 100%;
+        height: 45px;
+        width: 45px;
+        margin-left: 1em;
+        margin-top: 1em;
+    }
+
+
+    .username {
+        text-align: center;
+    }
+
+    .profilPicture {
+        margin-top: 1em;
+        border-radius: 100%;
+        width: 250px;
+        height: 250px;
+    }
+
+    .profileLinks {
+        position: absolute;
+        top: 40%;
+        left: 25%;
+        font-size: 1.2em;
+    }
+
+    .jobCtn {
+        width: 70%;
+        margin: 2rem auto 3rem;
+        background-color: white;
+    }
+
+    .jobBody {
+        padding-left: 1em;
+    }
+
+    .jobSubTitle {
+        font-size: large;
+    }
+
+    footer {
+        display: flex;
+        flex-direction: row;
+        margin-top: 2rem;
+        background-color: whitesmoke;
+        padding: 3em;
+        box-shadow: 0px 5px 15px grey;
+    }
+
+    .footerlink:hover {
+        color: cornflowerblue;
+    }
+
+    .left {
+        justify-content: flex-start;
+    }
+
+    .right {
+        position: relative;
+        left: 88%;
+        top: 85%;
+    }
+
+    .footerlink {
+        display: flex;
+        flex-direction: column;
+        color: #222222;
+    }
+
+    .bugTitle {
+        position: absolute;
+        top: 125px;
+        left: 44%;
+        color: whitesmoke;
+        font-weight: bold;
+    }
+
+    #debugCard {
+        width: 450px;
+        height: 650px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2rem;
+        filter: drop-shadow(5px 10px 2px #ccc);
+    }
+
+    .subtitle {
+        font-size: 0.7em;
+    }
+
+
+    .categoryName {
+        font-size: 3em;
+        background-color: white;
+        padding: 0.5em;
+        margin: 0;
+        color: cornflowerblue;
+    }
+
+    .imgA {
+        height: 250px;
+    }
+
+    .registerFs {
+        padding-top: 12em;
+        padding-bottom: 12em;
+        width: 50%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .profileCtn {
+        margin: 2rem auto 10rem;
+        width: 50%;
+    }
+
+
+}

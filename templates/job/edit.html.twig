@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Job{% endblock %}
+
+{% block body %}
+    <h1 class="mainTitle">Edit Job</h1>
+
+    {% if is_granted('ROLE_ADMIN') %}
+
+        {{ include('job/_form.html.twig', {'button_label': 'Update'}) }}
+
+        <a href="{{ path('job_index') }}">back to list</a>
+
+        {{ include('job/_delete_form.html.twig') }}
+
+    {% else %}
+        <p class="text-center">Seuls les administrateurs peuvent accéder à cette page <br>
+            <a href="{{ path('app_login') }}">Connexion</a>
+        </p>
+    {% endif %}
+{% endblock %}

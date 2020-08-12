@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta lang="fr">
+    <meta name="author" content="Lisa Michel">
+    <meta name="description" content="La plateforme des Développeurs">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{% block title %}Wild Community{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Delius&family=Montserrat&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('style.css') }}">
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+<nav class="mobileNav" role="navigation">
+    <div id="menuToggle">
+        <input type="checkbox"/>
+        <span></span>
+        <span></span>
+        <span></span>
+        <ul id="menu">
+            {% if app.user %}
+            <a href="{{ path('home') }}#Whadup">
+                <li>News</li>
+            </a>
+            <a href="{{ path('debug') }}">
+                <li>Débug Zone</li>
+            </a>
+            <a href="{{ path('job') }}">
+                <li>Job Zone</li>
+            </a>
+            <a href="{{ path('profile', {'id':app.user.username}) }}">
+                <li>Mon Profil</li>
+            </a>
+            <a href="{{ path('app_logout') }}">
+                <li>Déconnexion</li>
+            </a>
+            {% else %}
+            <a href="{{ path('app_login') }}">
+                <li>Connexion</li>
+            </a>
+            <a href="{{ path('home') }}">
+                <li>Accueil</li>
+            </a>
+        </ul>
+        {% endif %}
+
+    </div>
+</nav>
+
+<nav class="desktopNav">
+    {% if app.user %}
+        <a href="{{ path('home') }}">
+            <img class="logo" src="https://i.postimg.cc/wxngLfq9/Screenshot-2020-07-25-Untitled-design.png"
+                 alt="Logo Wild Community">
+        </a>
+        <a href="{{ path('home') }}#Whadup">Whadup</a>
+        <a href="{{ path('debug') }}">Débug Zone</a>
+        <a href="{{ path('job') }}">Job Zone</a>
+        <a href="{{ path('profile', {'id':app.user.username}) }}">Profil</a>
+        <a href="{{ path('app_logout') }}">Se déconnecter</a>
+    {% else %}
+        <a href="{{ path('home') }}">
+            <img class="logo" src="https://i.postimg.cc/wxngLfq9/Screenshot-2020-07-25-Untitled-design.png"
+                 alt="Logo Wild Community">
+        </a>
+        <a href="{{ path('app_login') }}">Connexion</a>
+    {% endif %}
+</nav>
+{% block body %}{% endblock %}
+{% block javascripts %}{% endblock %}
+
+</body>
+<footer>
+    <div class="left">
+        <a class="footerlink" href="{{ path('home') }}">Accueil</a>
+        <a class="footerlink" href="{{ path('app_login') }}">Connexion</a>
+        <a class="footerlink" href="{{ path('app_register') }}">Créer un compte</a>
+    </div>
+    <div class="right">
+        <a class="footerlink" href="mailto:michellisa.75@gmail.com">Contact</a>
+    </div>
+
+
+</footer>
+</html>

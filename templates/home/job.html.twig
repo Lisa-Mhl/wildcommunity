@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <div class="cover center">
+        <img src="https://i.postimg.cc/bw5V9KL9/Whadup-4.png" alt="Job Zone Cover">
+    </div>
+
+    {% if app.user %}
+        {% if is_granted('ROLE_EMPLOYER') %}
+            <a class="publishLink" href="{{ path('job_new') }}">Publier une offre</a>
+        {% endif %}
+
+        {% for job in jobs %}
+            <div class="jobCtn">
+                <h3 class="card-title mobileTitle">{{ job.title }} <br><span class="jobSubTitle">{{ job.contract }}
+                    chez {{ job.company }}</span></h3>
+                <p class="card-body">{{ job.description }}
+                    {% if job.skills %}
+                <p class="jobBody">Compétences requises : {{ job.skills }}</p>
+                {% endif %}
+                {% if job.experience %}
+                    <p class="jobBody">Expérience requise : {{ job.experience }} an(s)</p>
+                {% endif %}
+                <p class="jobBody">{{ job.salary }} € /mois</p>
+
+                {% if is_granted('ROLE_DEV') %}
+                    <div class="center">
+                        <a target="_blank" href="{{ job.link }}">Postuler</a>
+                    </div>
+                {% elseif is_granted('ROLE_EMPLOYER') %}
+                    {% if app.user is same as (job.author) %}
+                        {{ include('job/_delete_form.html.twig') }}
+                    {% endif %}
+                {% endif %}
+            </div>
+        {% endfor %}
+
+
+
+    {% else %}
+        <p class="text-center">Veuillez vous connecter pour accéder à cette page
+            <a href="{{ path('app_login') }}">Connexion</a>
+        </p>
+
+    {% endif %}
+
+
+
+
+
+{% endblock %}

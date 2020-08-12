@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Bug{% endblock %}
+
+{% block body %}
+    {% if app.user %}
+        <h1 class="mainTitle">Poster un bug</h1>
+
+        {{ form_start(form) }}
+        <fieldset class="formFs">
+            <div class="hidden">
+                {{ form_label(form.author, 'Auteur') }}
+                {{ form_widget(form.author) }}
+                {{ form_label(form.resolved, 'Résolu') }}
+                {{ form_widget(form.resolved) }}
+            </div>
+            {{ form_label(form.category, 'Catégorie') }}
+            {{ form_widget(form.category) }}
+            {{ form_label(form.title, 'Titre') }}
+            {{ form_widget(form.title) }}
+            {{ form_label(form.title, 'Description courte') }}
+            {{ form_widget(form.description) }}
+            {{ form_label(form.content, 'Description détaillée') }}
+            {{ form_widget(form.content, {'attr':{'class':'formSoluce'}}) }}
+            {{ form_label(form.imgA, 'Image 1') }}
+            {{ form_widget(form.imgA) }}
+            {{ form_label(form.imgB, 'Image 2') }}
+            {{ form_widget(form.imgB) }}
+            {{ form_label(form.imgC, 'Image 3') }}
+            {{ form_widget(form.imgC) }}
+            {{ form_label(form.imgC, 'Stack') }}
+            {{ form_widget(form.stack) }}
+            <div class="center">
+                <button class="sendlink">{{ button_label|default('Publier') }}</button>
+            </div>
+        </fieldset>
+        {{ form_end(form) }}
+    {% else %}
+        <p class="text-center">Veuillez vous connecter pour accéder à cette page
+            <a href="{{ path('app_login') }}">Connexion</a>
+        </p>
+    {% endif %}
+    <div class="center">
+        <a href="{{ path('debug') }}">Retour</a>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Article{% endblock %}
+
+{% block body %}
+    <h1 class="mainTitle">Publier un article</h1>
+
+    <fieldset class="formFs">
+        {{ include('article/_form.html.twig') }}
+    </fieldset>
+    <div class="center">
+    <a href="{{ path('home') }}">Retour</a>
+    </div>
+{% endblock %}

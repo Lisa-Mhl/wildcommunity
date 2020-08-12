@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+           {% block body %}
+               <h1 class="mainTitle">Modifier mon profil</h1>
+
+               {% if app.user %}
+                   {% if app.user.id is same as (user.id) %}
+                       <fieldset class="formFs">
+                           {{ include('user/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+                           <div class="center">
+                               {{ include('user/_delete_form.html.twig') }}
+                           </div>
+
+                       </fieldset>
+                   {% else %}
+                       <p class="text-center">Veuillez vous connecter pour accéder à cette page
+                           <a href="{{ path('app_login') }}">Connexion</a>
+                       </p>
+                   {% endif %}
+               {% endif %}
+
+           {% endblock %}

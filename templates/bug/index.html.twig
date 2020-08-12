@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bug index{% endblock %}
+
+{% block body %}
+    <h1 class="mainTitle">Bug index</h1>
+    {% if is_granted('ROLE_ADMIN') %}
+        {% for bug in bugs %}
+            <div class="card">
+                <p class="card-body">
+                    {{ bug.id }}
+                    {{ bug.title }}<br>
+                    Auteur : {{ bug.author }}<br>
+                    Description : {{ bug.description }}<br>
+                    {{ bug.imgB }}
+                    {{ bug.imgC }}
+                    Résolu : {{ bug.resolved ? 'Oui' : 'Non' }}<br>
+                </p>
+                <a class="text-center" href="{{ path('bug_show', {'id': bug.id}) }}">Voir le détail</a>
+                {% if bug.resolved == 0 %}
+                    <a class="text-center" href="{{ path('bug_edit', {'id': bug.id}) }}">Passer en résolu</a>
+                {% endif %}
+                <div class="center">
+                    {{ include('bug/_delete_form.html.twig') }}
+                </div>
+            </div>
+        {% else %}
+            <tr>
+                <td colspan="10">aucune donnée trouvée</td>
+            </tr>
+        {% endfor %}
+        <a href="{{ path('bug_new') }}">Ajouer un bug</a>
+
+    {% else %}
+        <p class="text-center">Seuls les administrateurs peuvent accéder à cette page <br>
+            <a href="{{ path('app_login') }}">Connexion</a>
+        </p>
+
+    {% endif %}
+{% endblock %}
